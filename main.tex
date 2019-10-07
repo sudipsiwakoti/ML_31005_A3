@@ -64,20 +64,31 @@
 \section{INTRODUCTION}\label{sec:intor}
 
 
-We hear the word sustainability in every step of our day to day life, but what is sustainability? People seems to talk a lot about sustainability but if we carefully listen to the conversation around us, we can understand that most of the conversation on sustainability is just focused on environmental sustainability while sustainability itself is a vast term that significantly impacts every aspect of life in this universe. (Dowling et al. 2016 p. 115) quotes Tim Jackson (2010) said ‘Sustainability is the art of living well, within the ecological limits of a finite Planet.’  Sustainability also can be defined as system within which all the subsystems are in harmony with each other and none of the sub-system can exist without each other. Engineering is one of the major field that has integrated sustainability as a core value to build future.\\
+Multiple different approaches are used for establishing the weight of an individual ensemble classifiers that contributes to ensemble’s answer and weighting methods, weighted majority voting, performance weighting, distribution summation, Bayesian combination, Naïve Bayes, Entropy weighting, etc are some example of methods used. On this Paper we will be mainly focusing on majority weighting and Naive Bayes methods.
+%starting new section
+\section{Description of methods}
+\subsection{Weighted Majority Weighting}\label{SEC:Methods }
+The concept of this technique is based on the general hypothesis that if we have evidence that if majority of the classifier are more qualified then these classifiers can further improve the performance. If we consider a hypothesis ht on class $w_j$ as $d_{t,j}$ such that $d_{t,j}$ is either 1 or 0.\\
 \\
-Past engineers have mainly focused on technical and economic feasibilities of systems design, whereas, future engineers face major challenges to incorporate  the entire spectrum of sustainability aspects (Sharifah et al. 2014).  Economic, environmental, and social sustainability are 3 key aspect of sustainable engineering and address multi-generational dimension.
+Mathematically this can be represented as
+
+$$\displaystyle\sum_{t=1}^{T}w_{t}d_{t,J}=\displaystyle\mathop{\max}_{j=1}^{C}\displaystyle\sum_{t=1}^{T}w_{t}d_{t,j}$
+\\
+In this method the weight of the classifier is assigned in proportion to the estimated performance of the classifier
+\subsection{Naive Bayes}\
+The 
+
 
 %starting new section
 \section{ASPECTS OF SUSTAINABILITY}
 \subsection{Environmental Sustainability}\label{SEC:Enviro}
-The term environment broadly applies to all the natural and build environment on this planet. Our livelihood depends on the environment around us and our presence and our actions with in the environment does impact directly or indirectly. As our environment has tendency to return to equilibrium after any disturbance but only to an extent after which impact of our action is irreversible. In order to maintain the equilibrium, we need to take a sustainable approach to all of our actions (Reddy \& Thomson 2015). E.g. we know climate change has been caused by our actions from the past decades and scientist have also pointed out that if we do not control carbon emission and take a sustainable approach then our environment will not be able to recover. As we cannot live without our environment unsustainable approach to environment will lead us to our extinct.\\
 \\
-Human activities have already crossed the safe operating space provided by nature with respect to climate, biodiversity and nitrogen cycle which has depleted water resources and land threatening long term habituality and development (Ekins 2011). Environment gives us limited resources for our existence and we need to use these limited resources in a sustainable manner to have less impact on the environment.
+\\
+
 \subsection{Social Sustainability}\label{sec:Social}
-Social sustainability is the social structure developed by a society or community to meet the need of current members and maintain support for future generation in a healthy manner. (Business Directory n.d.). Impact on environment direct effect on social sustainability as the society is created with in a sustained environment. Unsustained environment will create an unhealthy and resource depleted society and an unhealthy and depleted society cannot sustain for too long as diseases and depleted environment will cause life expectancy to drop and under resourced society will be unstable (Reddy \& Thomson 2015). To create a sustainable society, we need to use our environment and resources within in a sustainable manner.
+
 \subsection{Economic Sustainability }\label{sec:ECO}
-Economic sustainability is the ability to sustain a defined level of economic activities in present and future. Economic sustainability has been practiced in engineering since the begin of time and every project/system in the past were designed and implemented based on technical and economical feasibilities (Sharifah et al. 2014). Traditional engineering practice/education had been based on needs and demands to sustain the industry and market (Staniškis \& Katiliūtė 2016). Economic sustainability cannot be achieved in an unsustained society within an unsustainable environment (Reddy \& Thomson 2015). For an economy to be sustainable it needs resources from environment to fulfil the needs and demands of the industry and market.  If the environment and its resources has depleted, then the economy sustainability is not feasible.
+
 \section{INTERVIEW}
 \subsection{Expected Response}\label{sec:EXPECTED}
 \begin{itemize}
