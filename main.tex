@@ -64,7 +64,7 @@
 \section{INTRODUCTION}\label{sec:intor}
 
 
-Multiple different approaches are used for establishing the weight of an individual ensemble classifiers that contributes to ensemble’s answer and weighting methods, weighted majority voting, performance weighting, distribution summation, Bayesian combination, Naïve Bayes, Entropy weighting, etc are some example of methods used. On this Paper we will be mainly focusing on majority weighting and Naive Bayes methods.
+Multiple different approaches are used for establishing the weight of an individual ensemble classifiers that contributes to ensemble’s answer and Weighting methods, Weighted majority voting, Bagging, Boosting, distribution summation, Bayesian combination, Naïve Bayes, Entropy weighting, etc are some example of methods used. On this Paper we will be mainly focusing on majority weighting and Bagging methods.
 %starting new section
 \section{Description of methods}
 \subsection{Weighted Majority Voting}\label{SEC:Methods }
@@ -74,10 +74,14 @@ Mathematically this can be represented as
 
 $$\displaystyle\sum_{t=1}^{T}w_{t}d_{t,J}=\displaystyle\mathop{\max}_{j=1}^{C}\displaystyle\sum_{t=1}^{T}w_{t}d_{t,j}$$
 \\
-In this method the weight of the classifier is assigned in proportion to the estimated performance of the classifier
-\subsection{Naive Bayes}\
-The 
+i.e. if the total vote received by $w_j$ is greater than any other class then it is assigned 1.\\
+\\
+In this method the weight of the classifier is assigned in proportion to the estimated performance of the classifier and weighting is selected best performer class. 
 
+\subsection{Bagging}\
+This method is a combination of two method i.e. Bootstrapping and aggregation. This method use multiple weak model from specialised part of a feature space and aggregate them to get a leverage prediction from each space model.
+
+Here, bootstrapping selects k random samples from n sample from sample space then the results are aggregates from each model to get a combined prediction. Either probability or prediction of each individual model can be use for aggregation.    
 
 %starting new section
 \section{Advantages and Disadvantages}
@@ -85,8 +89,10 @@ The
 \\
 \\
 
-\subsection{Naive Bayes}\label{sec:Social}
+\subsection{Bagging}\label{sec:Social}
+Some of the advantages of bagging are that it uses multiple weak models to outperform a single stronger model. Along with that, it also helps avoid over-fitting whilst reducing variance of the model 
 
+Meanwhile, disadvantages of bagging are such that if the model are not created carefully it can introduce high bias rendering a prediction useless. Another major disvantage of bagging is it is computationally very intensive. 
 
 \section{Purposed Method}
 \subsection{Expected Response}\label{sec:EXPECTED}
