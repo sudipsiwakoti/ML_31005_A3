@@ -64,49 +64,56 @@
 \section{INTRODUCTION}\label{sec:intor}
 
 
-Multiple different approaches are used for establishing the weight of an individual ensemble classifiers that contributes to ensemble’s answer and Weighting methods, Weighted majority voting, Bagging, Boosting, distribution summation, Bayesian combination, Naïve Bayes, Entropy weighting, etc are some example of methods used. On this Paper we will be mainly focusing on majority weighting and Bagging methods.
+Multiple different approaches are used for establishing the weight of an individual ensemble classifiers that contributes to ensemble’s answer and Weighting methods, Weighted majority voting, Bagging, Boosting, distribution summation, Bayesian combination, Naive Bayes, Entropy weighting, etc are some example of methods used. On this Paper we will be mainly focusing on Boosting and Bagging methods.
 %starting new section
 \section{Description of methods}
-\subsection{Weighted Majority Voting}\label{SEC:Methods }
-The concept of this technique is based on the general hypothesis that if we have evidence that if majority of the classifier are more qualified then these classifiers can further improve the performance. If we consider a hypothesis ht on class $w_j$ as $d_{t,j}$ such that $d_{t,j}$ is either 1 or 0.\\
-\\
-Mathematically this can be represented as
-
-$$\displaystyle\sum_{t=1}^{T}w_{t}d_{t,J}=\displaystyle\mathop{\max}_{j=1}^{C}\displaystyle\sum_{t=1}^{T}w_{t}d_{t,j}$$
-\\
-i.e. if the total vote received by $w_j$ is greater than any other class then it is assigned 1.\\
-\\
-In this method the weight of the classifier is assigned in proportion to the estimated performance of the classifier and weighting is selected best performer class. 
-
 \subsection{Bagging}\
-This method is a combination of two method i.e. Bootstrapping and aggregation. This method use multiple weak model from specialised part of a feature space and aggregate them to get a leverage prediction from each space model.
+This method is a combination of two method i.e. Bootstrapping and aggregation. This method use multiple weak model from specialised part of a feature space and aggregate them to get a leverage prediction from each space model (Quan & Bernhard 2011).
 
-Here, bootstrapping selects k random samples from n sample from sample space then the results are aggregates from each model to get a combined prediction. Either probability or prediction of each individual model can be use for aggregation.    
+Here, bootstrapping selects k random samples from n sample from sample space then the results are aggregates from each model to get a combined prediction. Either probability or prediction of each individual model can be use for aggregation.
+
+\subsection{Boosting}\label{SEC:Methods }
+The concept of this technique converting weak learning algorithm into strong learner i.e selecting classifier that performs slightly better than random chance boosting it into classifier with arbitrarily high accuracy (Martinez & Gray 2014). Though it is similar to bagging where sample are selected at random, in boosting sample are selected intelligently and based on metaphorical concept of learning from failure to improvise. Here the model learns from error prediction and improves prediction and overall accuracy. In contrast to bagging, boosting selects random subset of data set as random subset of features. Some of the example of boosting algorithm used are XGboost, gradient boost, Adaboost, etc.
+    
 
 %starting new section
 \section{Advantages and Disadvantages}
-\subsection{Weighted majority Voting}\label{SEC:Enviro}
-\\
-\\
+\subsection{Bagging}\label{sec:Bagging}
+Some of the advantages of bagging are that it uses multiple weak models to outperform a single stronger model. Along with that, it also helps avoid over-fitting whilst reducing variance of the model (Medium 2018).
 
-\subsection{Bagging}\label{sec:Social}
-Some of the advantages of bagging are that it uses multiple weak models to outperform a single stronger model. Along with that, it also helps avoid over-fitting whilst reducing variance of the model 
+Meanwhile, disadvantages of bagging are such that if the model are not created carefully it can introduce high bias rendering a prediction useless. Another major disadvantage of bagging is it is computationally very intensive (Medium 2018).
 
-Meanwhile, disadvantages of bagging are such that if the model are not created carefully it can introduce high bias rendering a prediction useless. Another major disvantage of bagging is it is computationally very intensive. 
+\subsection{Boosting}\label{SEC:boosting}
+Some of the advantages of boosting is that it can be used with many different classifier and improves classification accuracy. Meanwhile, Boosting is also not prone to problem of over-fitting (Medium 2018). 
+
+There are disadvantages to boosting and one of the major disadvantage is that it is easily defeated by noise in the data and efficiency of the algorithm is directly effected by by outlier as boosting tries to fit every data point perfectly (Medium 2018).
 
 \section{Purposed Method}
-\subsection{Expected Response}\label{sec:EXPECTED}
+Since boosting is prone to noise in the data and outlier as it tries to fit every data point leading to weight that too high or low. My proposed solution to building a noise resilient boosting is to assign weight to the learning process by introducing statistical test such as confidence test using 2-sample test.
 
+Basically, the algorithm would work in such a way that before assigning a weight to a classifier and using it as a learning sample the calculated weight would be subjected to statistical test in combination to previously calculated weights of individual classifier to form a distribution curve and the calculated weight is to be used as learning sample only if the weight falls in the confidence interval as selected by the user. Any classifier that falls outside the interval are then to be labeled as outlier or noise in the data.\\ 
+For the purpose of verification, the algorithm would be built by taking a clean data and then introducing a set amount of noise and outlier. Lets consider 5 percentage of noise is introduced to the original dataset and here the confidence interval for 2-sample test would be set as ${\alpha = 0.05}$. As the learning process is progressing the predicted weight is stored in memory then subjected to 2-sample test before selecting them as weak learner's weight. Should any of the previously selected weight move out of the confidence interval it is to be labeled as outlier/noise and removed from learner. At the end of the algorithm, all the weight that falls with in the confidence interval are to be selected as good learning classifier and weight are to be selected based on these classifier. \\
+
+To validate the results we can compare the weight distribution of clean dataset with the weight distribution of noisy data set. 
 
         
 \section{Why is Purposed Method Better}\label{conclusion}
+The purposed method will work as noise and outliers are labeled and removed from the learner classifier and only classifier weight falling within the confidence interval are used for learning purpose, this would remove any bias created with in boosting algorithm by presence of outliers/noise in the dataset. The main problem as per my interpretation in classical boosting algorithm is it tries to fit in all the data point in the data space and with this modification to the algorithm will remove that constrain by ignoring the outliers/noise based on the weight calculated and analysing the weight distribution of each weak learner. 
 \pagebreak
 \section{REFRENCES}\label{refrences}
 \begin{flushleft}
 
 \hangindent=2em
 \hangafter=1    
-Dowling, D., Hadgraft, R., Carew, A., Mccarthy, T., Hargreaves, D. \& Baillie, C. 2016,'Sustainable Engineering', Engineering Your Future An Australasian Guide, 3rd edn, Wiley, 42, pp. 115.\linebreak
+D'Souza, J. 2018, A Quick Guide to Boosting in ML, viewed 7/10/ 2019, <https://medium.com/greyatom/a-quick-guide-to-boosting-in-ml-acf7c1585cb5>.\linebreak
+
+Kandan, H. 2018, Bagging the skill of Bagging(Bootstrap aggregating), viewed 7/10/ 2019, <https://medium.com/@harishkandan95/bagging-the-skill-of-bagging-bootstrap-aggregating-83c18dcabdf1>.\linebreak
+
+Martinez, W. & Gray, J.B. 2014, 'The role of margins in boosting and ensemble performance', Wiley Interdisciplinary Reviews: Computational Statistics, vol. 6, no. 2.
+
+S. Brid, R. 2018, Introduction to Boosting, viewed 7/10/ 2019, <https://medium.com/greyatom/boosting-ce84639a805d>.\linebreak
+
+Sun, Q. & Pfahringer, B. 2011, 'Bagging Ensemble Selection', Springer Berlin Heidelberg, Berlin, Heidelberg, pp. 251-60.\linebreak
 
 
 
