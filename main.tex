@@ -31,17 +31,17 @@
     \line(1,0){475}\\
 % defining spacing    
    [2.5mm]
-    \huge{\bfseries INSERT TITLE}\\
+    \huge{\bfseries ENSEMBLE METHOD  AND CLASSIFIER WEIGHT CONTRIBUTION TO ENSEMBLE PREDICTION}\\
     \line(1,0){475}\\
     [3mm]
-    \textsc{\Large INSERT REPORT TYPE}\\
+    \textsc{\Large Assignment 3}\\
     [6cm]
     \textsc{\small \\
     [1mm]
     31005-MACHINE LEARNING\\
     \line(1,0){150}\\
     SPRING 2019}\\
-    [6.cm]
+    [5.cm]
     \end{center}
 % shifting alingment to left    
     \begin{flushleft}
@@ -71,7 +71,7 @@ Multiple different approaches are used for establishing the weight of an individ
 %starting new section
 \section{Description of methods}
 \subsection{Bagging}\
-This method is a combination of two method i.e. Bootstrapping and aggregation. This method use multiple weak model from specialised part of a feature space and aggregate them to get a leverage prediction from each space model (Quan & Bernhard 2011).
+This method is a combination of two method i.e. Bootstrapping and aggregation. This method use multiple weak model from specialised part of a feature space and aggregate them to get a leverage prediction from each space model (Quan & Bernhard 2011).\\
 
 Here, bootstrapping selects k random samples from n sample from sample space then the results are aggregates from each model to get a combined prediction. Either probability or prediction of each individual model can be use for aggregation.
 
@@ -82,19 +82,20 @@ The concept of this technique converting weak learning algorithm into strong lea
 %starting new section
 \section{Advantages and Disadvantages}
 \subsection{Bagging}\label{sec:Bagging}
-Some of the advantages of bagging are that it uses multiple weak models to outperform a single stronger model. Along with that, it also helps avoid over-fitting whilst reducing variance of the model (Medium 2018).
+Some of the advantages of bagging are that it uses multiple weak models to outperform a single stronger model. Along with that, it also helps avoid over-fitting whilst reducing variance of the model (Medium 2018).\\
 
 Meanwhile, disadvantages of bagging are such that if the model are not created carefully it can introduce high bias rendering a prediction useless. Another major disadvantage of bagging is it is computationally very intensive (Medium 2018).
 
 \subsection{Boosting}\label{SEC:boosting}
-Some of the advantages of boosting is that it can be used with many different classifier and improves classification accuracy. Meanwhile, Boosting is also not prone to problem of over-fitting (Medium 2018). 
+Some of the advantages of boosting is that it can be used with many different classifier and improves classification accuracy. Meanwhile, Boosting is also not prone to problem of over-fitting (Medium 2018).\\
 
 There are disadvantages to boosting and one of the major disadvantage is that it is easily defeated by noise in the data and efficiency of the algorithm is directly effected by by outlier as boosting tries to fit every data point perfectly (Medium 2018).
 
 \section{Purposed Method}
-Since boosting is prone to noise in the data and outlier as it tries to fit every data point leading to weight that too high or low. My proposed solution to building a noise resilient boosting is to assign weight to the learning process by introducing statistical test such as confidence test using 2-sample test.
+Since boosting is prone to noise in the data and outlier as it tries to fit every data point leading to weight that too high or low. My proposed solution to building a noise resilient boosting is to assign weight to the learning process by introducing statistical test such as confidence test using 2-sample test.\\
 
 Basically, the algorithm would work in such a way that before assigning a weight to a classifier and using it as a learning sample the calculated weight would be subjected to statistical test in combination to previously calculated weights of individual classifier to form a distribution curve and the calculated weight is to be used as learning sample only if the weight falls in the confidence interval as selected by the user. Any classifier that falls outside the interval are then to be labeled as outlier or noise in the data.\\ 
+
 For the purpose of verification, the algorithm would be built by taking a clean data and then introducing a set amount of noise and outlier. Lets consider 5 percentage of noise is introduced to the original dataset and here the confidence interval for 2-sample test would be set as ${\alpha = 0.05}$. As the learning process is progressing the predicted weight is stored in memory then subjected to 2-sample test before selecting them as weak learner's weight. Should any of the previously selected weight move out of the confidence interval it is to be labeled as outlier/noise and removed from learner. At the end of the algorithm, all the weight that falls with in the confidence interval are to be selected as good learning classifier and weight are to be selected based on these classifier. \\
 
 To validate the results we can compare the weight distribution of clean dataset with the weight distribution of noisy data set. 
